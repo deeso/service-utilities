@@ -1,0 +1,20 @@
+PMOD="service-utilities"
+PMOD_="service_utilities"
+VENV="venv"
+PROJECT_BASE="/research_data/code/git/"
+PROJECT=$PROJECT_BASE/$PMOD/
+
+VIRTUAL_ENV=$PROJECT/$VENV
+PYTHON=$VIRTUAL_ENV"/bin/python"
+# cleanup local directory
+
+
+rm -r $VIRTUAL_ENV/lib/python3.5/site-packages/$PMOD_* \
+    $PROJECT/$PMOD_.egg-info/ \
+    $PROJECT/dist/ \
+    $PROJECT/build/ \
+    $PROJECT/src/$PMOD_.egg-info/
+
+python3 -m venv $VIRTUAL_ENV
+$PYTHON setup.py install
+

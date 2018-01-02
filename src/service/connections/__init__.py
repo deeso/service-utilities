@@ -1,0 +1,9 @@
+from base_connection import ConnectionFactory
+from kombu_connection import KombuConnection
+from mongo_connection import MongoConnection
+from socket_connection import TCPConnection, UDPConnection
+
+ConnectionFactory.register_connection(KombuConnection)
+ConnectionFactory.register_connection(MongoConnection)
+ConnectionFactory.register_connection(TCPConnection)
+ConnectionFactory.register_connection(UDPConnection)
