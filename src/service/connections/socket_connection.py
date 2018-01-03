@@ -1,4 +1,4 @@
-from base_connection import ConnectionFactory
+from .base_connection import ConnectionFactory
 import socket
 
 

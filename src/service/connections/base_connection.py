@@ -1,7 +1,7 @@
 import json
 import struct
 
-from .message import FauxMessage
+from service.utilities.message import FauxMessage
 
 REGISTRY = {}
 

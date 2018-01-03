@@ -1,7 +1,8 @@
-from base_connection import ConnectionFactory
-from kombu_connection import KombuConnection
-from mongo_connection import MongoConnection
-from socket_connection import TCPConnection, UDPConnection
+from .base_connection import ConnectionFactory
+from .kombu_connection import KombuConnection
+from .mongo_connection import MongoConnection
+from .socket_connection import TCPConnection, UDPConnection
+from .jsonline_connection import JsonTCPLineConnection, JsonUDPLineConnection
 
 ConnectionFactory.register_connection(KombuConnection)
 ConnectionFactory.register_connection(MongoConnection)

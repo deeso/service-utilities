@@ -1,4 +1,4 @@
-from base_connection import ConnectionFactory
+from .base_connection import ConnectionFactory
 from pymongo import MongoClient
 import logging
 from hashlib import sha256
@@ -9,6 +9,7 @@ class MongoConnection(ConnectionFactory):
     DEFAULT_COLLECTION = 'default'
     DEFAULT_ID_KEY = 'msg_id'
     KEY = "MongoConnection"
+    URI_TYPE = 'mongodb'
 
     def __init__(self, uri, default_db=DEFAULT_DB, gen_id_from=lambda m: '',
                  gen_id=None, check_id=True,

@@ -1,11 +1,12 @@
-from base_connection import ConnectionFactory
+from .base_connection import ConnectionFactory
 from kombu import Connection as _KombuConnection
 import queue
 
 
-class KombuConnection(ConnectionFactory):
+class RedisKombuConnection(ConnectionFactory):
     DEFAULT_QUEUE = 'default'
     KEY = "KombuConnection"
+    URI_TYPE='redis'
 
     def __init__(self, uri, queue=DEFAULT_QUEUE, meta={}, **kargs):
         v = uri
@@ -101,3 +102,9 @@ class KombuConnection(ConnectionFactory):
 
     def read_message(self, callback=None, sz=8192):
         return self.recv_message(callback=callback)
+
+
+#TODO fix this URI stuff
+class KombuConnection(RedisKombuConnection):
+    URI_TYPE='redis'
+    pass

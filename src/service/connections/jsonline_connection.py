@@ -1,6 +1,6 @@
 import json
-from base_connection import ConnectionFactory
-from socket_connection import UDPConnection, TCPConnection
+from .base_connection import ConnectionFactory
+from .socket_connection import UDPConnection, TCPConnection
 
 
 class JsonUDPLineConnection(UDPConnection):
