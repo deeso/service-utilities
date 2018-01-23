@@ -8,6 +8,7 @@ REGISTRY = {}
 
 class ConnectionFactory(object):
     KEY = "ConnectionFactory"
+    URI_TYPE = "NONE"
 
     @classmethod
     def uri_type(cls):
@@ -18,7 +19,7 @@ class ConnectionFactory(object):
         global REGISTRY
         REGISTRY[ccls.uri_type()] = ccls
 
-    def __init__(self, uri=None, name=None, host=None,
+    def __init__(self, name=None, host=None,
                  port=None, ip_type=None, **kargs):
         if uri is None:
             raise Exception("An URI must be specified")
@@ -206,3 +207,18 @@ class ConnectionFactory(object):
     def key(cls):
         return cls.KEY.lower()
 
+    @classmethod
+    def from_uri(cls, uri, **kargs):
+        global REGISTRY
+        for k, con_cls in REGISTRY.items():
+            if con_cls.can_handle(uri):
+                return con_cls.create_from_uri(uri, **kargs)
+        return None
+
+    @classmethod
+    def can_handle(cls, uri):
+        return uri.lower().find(cls.URI_TYPE) == 0
+
+    @classmethod
+    def create_from_uri(cls, uri, **kargs):
+        return cls(uri, **kargs)
